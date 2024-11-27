@@ -3,11 +3,12 @@
 
 from sympy import symbols, diff, solve 
 
-def tangente(f, x0, h=1e-5):
-    m = derivada_aproximada(f, x0)
-    b = f(x0) - m * x0
-    return lambda x: m * x + b
-
-f = lambda x: x**2
-tangente_a_x0 = tangente(f, 2)
-print(tangente_a_x0(2))
+def tangente_a_curva():
+    funcion_str = input("Ingresa la función en términos de x (por ejemplo: x**2 + 3*x): ")
+    x0 = float(input("Ingresa el punto donde calcular la tangente (x0): "))
+    f = lambda x: eval(funcion_str)
+    h = 1e-5
+    pendiente = (f(x0 + h) - f(x0 - h)) / (2 * h)
+    b = f(x0) - pendiente * x0
+    print(f"La ecuación de la recta tangente es: y = {pendiente:.5f}x + {b:.5f}")
+tangente_a_curva()
